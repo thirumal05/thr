@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>password checking</title>
+
+	<meta charset="UTF-8">
+	<meta name = "viewport" content = "user-scalable=no, width=device-width">
+        <script src="scripts/jquery-1.12.2.min.js"></script>
+        <script src="scripts/jquery-ui.min.js"></script>
+        <script src="scripts/jquery.ui.touch-punch.min.js"></script>
+		<style>
+			#mainContainer{
+				position:absolute;
+				margin: 0 auto;
+				left:0px;
+				right:0px;
+				top:0px;
+				bottom:0px;
+				width:1000px;
+				height:563px;
+				border:1px solid red;
+			}
+			#activityContainer{
+				position:absolute;
+				margin: 0 auto;
+				left:0px;
+				right:0px;
+				top:100px;
+				bottom:0px;
+				width:800px;
+				height:130px;
+			}
+			#passText{
+				position:absolute;
+				font-weight:bold;
+				font-size:22px;
+				left:10px;
+				top:10px;
+			}
+			#passTxt{
+				position:absolute;
+				top:50px;
+				left:10px;
+				width:780px;
+				height:40px;
+				font-size:44px;
+				border:1px solid green;
+			}
+			#popupBox{
+				position:absolute;
+				margin: 0 auto;
+				left:5px;
+				right:0px;
+				top:220px;
+				bottom:0px;
+				width:780px;
+				height:300px;
+				border:1px solid red;
+				display:none;
+			}
+			#passRetxt{
+				position:absolute;
+				font-weight:bold;
+				font-size:22px;
+				left:20px;
+				top:10px;
+			}
+			#conditionCheckDiv{
+				position:absolute;
+				font-size:20px;
+				left:20px;
+				top:50px;
+				width:600px;
+			}
+			.tick{
+				position:absolute;
+				width:20px;
+				height:20px;
+				top:-2px;
+				color:green;
+
+			}
+			.Ctxt{
+				position:absolute;
+				left:30px;
+
+			}
+			#condtion1{
+				position:absolute;
+				top:30px;
+				width:100%;
+			}
+			#condtion2{
+				position:absolute;
+				top:60px;
+				width:100%;
+			}
+			#condtion3{
+				position:absolute;
+				top:90px;
+				width:100%;
+			}
+			#condtion4{
+				position:absolute;
+				top:120px;
+				width:100%;
+			}
+			#tick1{
+				display:none;
+			}
+			#tick2{
+				display:none;
+			}
+			#tick3{
+				display:none;
+			}
+			#tick4{
+				display:none;
+			}
+		</style>
+		<script>
+		
+			var inputValue;
+		
+			// Ready fun
+			$(function(){
+				    $("input").focus(function(){
+						$("#popupBox").css("display", "block").fadeIn(500);
+					});
+					$("input").blur(function(){
+						$("#popupBox").css("display", "none").fadeOut(500);
+					});
+				// on key press validation process
+					
+					$("input").keyup(function(){
+						myInput=$("#passTxt").val();
+				//validate the length
+		
+					if(myInput.length >= 8) {
+							$("#tick1").css("display", "block");
+					} else {
+							$("#tick1").css("display", "none");
+					}
+					
+					var lowerCaseLetters = /[a-z]/g;
+
+					
+						if(myInput.match(lowerCaseLetters)) {  
+					  
+					  $("#tick3").css("display", "block");
+					  } else {
+						$("#tick3").css("display", "none");
+					  
+					  }
+					  
+					  // Validate capital letters
+					  var upperCaseLetters = /[A-Z]/g;
+					  if(myInput.match(upperCaseLetters)) {  
+						$("#tick2").css("display", "block");
+					  } else {
+						$("#tick2").css("display", "none");
+					  }
+
+					  // Validate numbers
+					  var numbers = /[0-9]/g;
+					  if(myInput.match(numbers)) {  
+						  $("#tick4").css("display", "block");
+						} else {
+						  $("#tick4").css("display", "none");
+					  }
+
+					});
+	
+			});
+
+				
+
+			
+			
+			
+		
+		
+		</script>
+		
+		
+		
+</head>
+<body>
+	<div id="mainContainer">
+		<div id="activityContainer">	
+			<div id='passText'>Password</div>
+			<input type="password" name="psw" id='passTxt'/>
+		</div>	
+			<div id='popupBox'>
+				<div id="passRetxt">Password requirements</div>
+					<div id="conditionCheckDiv">
+					
+						<div id='condtion1'><span id="tick1" class='tick'>&#x2714;</span> <span class='Ctxt'>Minimum 8 characters</span></div>
+						<div id='condtion2'><span id="tick2" class='tick'>&#x2714;</span> <span class='Ctxt'>At least one uppercase character</span></div>
+ 						<div id='condtion3'><span id="tick3" class='tick'>&#x2714;</span> <span class='Ctxt'>At least one lowercase character</span></div>
+						<div id='condtion4'><span id="tick4" class='tick'>&#x2714;</span> <span class='Ctxt'>At least one number</span></div>
+
+					</div>
+			</div>
+	</div>
+	
+
+</body>
+</html>	
